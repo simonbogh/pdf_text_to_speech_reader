@@ -1,3 +1,4 @@
+import platform
 import PyPDF2
 import pyttsx3
 
@@ -10,8 +11,13 @@ pdfReader = PyPDF2.PdfReader(pdfFileObj)
 # Initialize the text-to-speech engine
 engine = pyttsx3.init()
 
-# Set voice to Samantha (macOS)
-# engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha')
+# Check the system
+if platform.system() == 'Darwin':
+    # Set voice to Samantha (macOS)
+    engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha')
+else:
+    # use the default voice
+    pass
 
 # Set the rate of the voice
 engine.setProperty('rate', 190)
